@@ -28,6 +28,8 @@ WORKDIR /var/www/html
 
 COPY --from=fetcher /tmp/out /var/www/html
 
+COPY php-error-logging.ini /usr/local/etc/php/conf.d/error-logging.ini
+
 # Ensure PHP-FPM explicitly listens on port 9000
 RUN sed -i 's/listen = .*/listen = 9000/' /usr/local/etc/php-fpm.d/zz-docker.conf
 
