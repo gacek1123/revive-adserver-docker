@@ -28,6 +28,13 @@ WORKDIR /var/www/html
 
 COPY --from=fetcher /tmp/out /var/www/html
 
+# 2. Fix file ownership so PHP-FPM process can write to app directories
+RUN chown -R www-data:www-data \
+    /var/www/html/var \
+    /var/www/html/plugins \
+    /var/www/html/www/admin/plugins \
+    /var/www/html/www/images
+
 COPY php-error-logging.ini /usr/local/etc/php/conf.d/error-logging.ini
 
 # Ensure PHP-FPM explicitly listens on port 9000
