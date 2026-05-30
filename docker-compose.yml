@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - revive-data:/var/www/html
+      - ./installer.conf.php:/tmp/installer.conf:ro
     environment:
       - SERVICE_FQDN_PHP_FPM=${COOLIFY_URL}
 
